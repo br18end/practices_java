@@ -1,76 +1,77 @@
 import java.util.Scanner;
-public class Cola {
-    private final int MAXIMO = 100;
+
+public class Fifo {
+    private final int MAX = 100;
     private int[] V;
-    private int inicio;
-    private int fin;
+    private int begin;
+    private int end;
 
-    public Cola() {
-        this.V = new int[MAXIMO + 1];
-        this.inicio = 0;
-        this.fin = 0;
+    public Fifo() {
+        this.V = new int[MAX + 1];
+        this.begin = 0;
+        this.end = 0;
     }
 
-    public boolean esVacia() {
-        return inicio == fin;
+    public boolean isEmpty() {
+        return begin == end;
     }
 
-    public boolean esLlena() {
-        return tamanio() == MAXIMO - 1;
+    public boolean isFull() {
+        return fifoLenght() == MAX - 1;
     }
 
-    public void adicionar(int a) {
-        if (esLlena()) {
-            System.out.println("Cola Llena!");
+    public void addFifo(int a) {
+        if (isFull()) {
+            System.out.println("Fifo full!");
         } else {
-            fin = (fin + 1) % MAXIMO;
-            V[fin] = a;
+            end = (end + 1) % MAX;
+            V[end] = a;
         }
     }
 
-    public int eliminar() {
+    public int deleteFifo() {
         int a = Integer.MIN_VALUE;
-        if (esVacia()) {
-            System.out.println("Cola Vacia!");
+        if (isEmpty()) {
+            System.out.println("Fifo empty!");
         } else {
-            inicio = (inicio + 1) % MAXIMO;
-            a = V[inicio];
+            begin = (begin + 1) % MAX;
+            a = V[begin];
         }
         return a;
     }
 
-    public int tamanio() {
-        return (fin - inicio + MAXIMO) % MAXIMO;
+    public int fifoLenght() {
+        return (end - begin + MAX) % MAX;
     }
 
-    private void copiar(ColaCircular B) {
-        while (!B.esVacia()) {
-            adicionar(B.eliminar());
+    private void copy(FifoCircle B) {
+        while (!B.isEmpty()) {
+            addFifo(B.deleteFifo());
         }
     }
 
     public void leer() {
         Scanner in = new Scanner(System.in);
-        System.out.print("No.Elementos: ");
+        System.out.print("No.Elements: ");
         int n = in.nextInt();
-        System.out.println("Ingrese elementos:");
+        System.out.println("Insert elements:");
         for (int i = 0; i < n; i++) {
             int a = in.nextInt();
-            adicionar(a);
+            addFifo(a);
         }
     }
 
-    public void mostrar() {
-        if (esVacia()) {
-            System.out.println("Cola Vacia!");
+    public void showFifo() {
+        if (isEmpty()) {
+            System.out.println("Fifo empty!");
         } else {
-            ColaCircular X = new ColaCircular();
-            while (!esVacia()) {
-                int a = eliminar();
+            FifoCircle X = new FifoCircle();
+            while (!isEmpty()) {
+                int a = deleteFifo();
                 System.out.print(" " + a);
-                X.adicionar(a);
+                X.addFifo(a);
             }
-            this.copiar(X);
+            this.copy(X);
             System.out.println("");
         }
     }
