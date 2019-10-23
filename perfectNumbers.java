@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Practica43 {
+public class perfectNumbers {
 	public static void main(String[] args) {
 		int divisor = 1;
 		int num;

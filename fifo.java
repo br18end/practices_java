@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Fifo {
+public class fifo {
     private final int MAX = 100;
     private int[] V;
     private int begin;

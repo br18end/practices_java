@@ -1,141 +1,140 @@
-public class Pila {
-	private int arreglo[];
-	private int tope;
-	private int tamaño;
-	private String cadena;
-	int x, y, z, w; 
+public class lifo {
+	private int array[];
+	private int last;
+	private int arrayLength;
+	private String word;
+	int x, y, z, w;
 
-	public Pila(String cadena) {
-		tamaño = 10;
-		arreglo = new int[tamaño];
-		tope = -1;
-		this.cadena = cadena;
+	public lifo(String word) {
+		arrayLength = 10;
+		array = new int[arrayLength];
+		last = -1;
+		this.word = word;
 	}
 
-	// LLENA
-	public boolean llena() {
-		if (tamaño - 1 == tope) {
+	// full
+	public boolean full() {
+		if (arrayLength - 1 == last) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	// VACIA
-	public boolean vacia() {
-		if (tope == -1) {
+	// empty
+	public boolean empty() {
+		if (last == -1) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	// INSERTAR
-	public void push(int dato) {
-		if (llena()) {
-			System.out.println("Arreglo lleno");
+	// push
+	public void push(int data) {
+		if (full()) {
+			System.out.println("Array full");
 		} else {
-			tope++;
-			arreglo[tope] = dato;
+			last++;
+			array[last] = data;
 		}
 	}
 
-	// ELIMINAR
+	// pop
 	public void pop() {
-		if (vacia()) {
-			System.out.println("Arreglo vacio");
+		if (empty()) {
+			System.out.println("Array empty");
 		} else {
-			tope--;
+			last--;
 		}
 	}
 
-	// IMPRIMIR ARREGLO
-	public String toString() {
+	// show array
+	public StrinlastString() {
 		String s = "";
-		if (vacia()) {
-			s = "Ingrese datos primero";
+		if (empty()) {
+			s = "Insert data first";
 		} else {
-			for (int i = 0; i <= tope; i++) {
-				s = s + "[" + arreglo[i] + "]" ;
-			}
+			for (int i = 0; i <= last; i++) {
+				s = s + "[" + array[i] + "]";}
 		}
 		return s;
 	}
 
-	// PILA
-	public void pila() {
+	// lifo
+	public void lifoMethod() {
 		int i = 0;
-		while (i < cadena.length()) {
-			int caracter = cadena.charAt(i);
-			if (caracter == '+') {
-				asignarPila();
-				z=y+x;
+		while (i < word.length()) {
+			int character = word.charAt(i);
+			if (character == '+') {
+				assignlifo();
+				z = y + x;
 				push(z);
-			} else if (caracter == '-') {
-				asignarPila();
-				z=y-x;
+			} else if (character == '-') {
+				assignlifo();
+				z = y - x;
 				push(z);
-			} else if (caracter == '*') {
-				asignarPila();
-				z=y*x;
+			} else if (character == '*') {
+				assignlifo();
+				z = y * x;
 				push(z);
 			} else {
-				w = caracter - 48;
+				w = character - 48;
 				push(w);
 			}
 			i++;
 		}
 	}
-	
-	// COLA
-	public void cola() {
+
+	// fifo
+	public void fifoMethod() {
 		int i = 0;
-		while (i < cadena.length()) {
-			int caracter = cadena.charAt(i);
-			if (caracter == '+') {
-				asignarCola();
-				z=y+x;
+		while (i < word.length()) {
+			int character = word.charAt(i);
+			if (character == '+') {
+				assignfifo();
+				z = y + x;
 				push(z);
-			} else if (caracter == '-') {
-				asignarCola();
-				z=y-x;
+			} else if (character == '-') {
+				assignfifo();
+				z = y - x;
 				push(z);
-			} else if (caracter == '*') {
-				asignarCola();
-				z=y*x;
+			} else if (character == '*') {
+				assignfifo();
+				z = y * x;
 				push(z);
 			} else {
-				w = caracter - 48;
+				w = character - 48;
 				push(w);
 			}
 			i++;
 		}
 	}
-	
-	// ASIGNAR PILA
-	public void asignarPila(){
-		if(vacia()){
-			System.out.println("Arreglo vacio");
-		} else if(tope==0){
-			System.out.println("Ingrese otro dato");
+
+	// assign lifo
+	public void assignlifo() {
+		if (empty()) {
+			System.out.println("Array empty");
+		} else if (last == 0) {
+			System.out.println("Insert another value");
 		} else {
-			x=arreglo[tope];
-			tope--;
-			y=arreglo[tope];
+			x = array[last];
+			last--;
+			y = array[last];
 			pop();
 		}
 	}
-	
-	// ASIGNAR COLA
-	public void asignarCola(){
-		if(vacia()){
-			System.out.println("Arreglo vacio");
-		} else if(tope==0){
-			System.out.println("Ingrese otro dato");
+
+	// assign fifo
+	public void assignfifo() {
+		if (empty()) {
+			System.out.println("Array empty");
+		} else if (last == 0) {
+			System.out.println("Insert another value");
 		} else {
-			y=arreglo[1];
-			tope--;
-			x=arreglo[0];
+			y = array[1];
+			last--;
+			x = array[0];
 			pop();
 		}
 	}
